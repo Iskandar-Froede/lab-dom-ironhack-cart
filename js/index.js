@@ -2,22 +2,46 @@
 
 function updateSubtotal(product) {
   console.log('Calculating subtotal, yey!');
+  const price = product.querySelector('.price span'); // targeting the price in html
+  const quantity = product.querySelector('.quantity input');
+  const priceText = Number(price.innerText); // for grabbing the selector using the innerText but only in number instead of string
+  const quantityValue = Number(quantity.value); // + is same like changing the string to Number
+  const subtotal = priceText * quantityValue;
+  const sub = product.querySelector('.subtotal span');
+  sub.innerText = subtotal;
+  console.log(product, priceText, quantityValue, subtotal);
 
-  //... your code goes here
+return subtotal;
+    //... your code goes here
 }
 
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
-  const singleProduct = document.querySelector('.product');
-  updateSubtotal(singleProduct);
+  // const singleProduct = document.querySelector('.product');
+  // updateSubtotal(singleProduct);
   // end of test
 
   // ITERATION 2
   //... your code goes here
 
+  let total = 0; // need to be let because its changing
+    const allProducts = document.querySelectorAll('.product');
+
+    allProducts.forEach((element) => {
+   let subTotal = updateSubtotal(element)  
+    total += subTotal    // adding the total from each element
+    })
+    console.log(total); 
+    
+
+
   // ITERATION 3
   //... your code goes here
+
+  const totalPrice = document.querySelectorAll('#total-value span');
+  totalPrice.innerText = total;
+
 }
 
 // ITERATION 4
@@ -26,6 +50,8 @@ function removeProduct(event) {
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
   //... your code goes here
+
+  
 }
 
 // ITERATION 5
